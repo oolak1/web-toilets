@@ -1,10 +1,9 @@
 import { Suspense, lazy } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./components/home";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
-import { useRoutes } from "react-router-dom";
-import routes from "tempo-routes";
+import SearchResultsPage from "./pages/search-results";
 
 // Define process for Next.js compatibility
 window.process = { env: { NODE_ENV: "development" } };
@@ -23,6 +22,12 @@ const GuideDetail = lazy(() => import("./pages/guides/detail"));
 const Services = lazy(() => import("./pages/services"));
 const DIY = lazy(() => import("./pages/diy"));
 const DIYDetail = lazy(() => import("./pages/diy/detail"));
+const Articles = lazy(() => import("./pages/articles"));
+const ArticleDetail = lazy(() => import("./pages/articles/[slug]"));
+const Howto = lazy(() => import("./pages/howto"));
+const HowtoFixRunningToilet = lazy(
+  () => import("./pages/howto/fix/fix-running-toilet"),
+);
 
 function App() {
   return (
@@ -60,6 +65,14 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/diy" element={<DIY />} />
             <Route path="/diy/:slug" element={<DIYDetail />} />
+            <Route path="/articles" element={<Articles />} />
+            <Route path="/articles/:slug" element={<ArticleDetail />} />
+            <Route path="/howto" element={<Howto />} />
+            <Route
+              path="/howto/fix/fix-running-toilet"
+              element={<HowtoFixRunningToilet />}
+            />
+            <Route path="/search-results" element={<SearchResultsPage />} />
 
             {/* Add tempobook route for Tempo */}
             {import.meta.env.VITE_TEMPO === "true" && (
@@ -68,7 +81,6 @@ function App() {
           </Routes>
         </main>
         <Footer />
-        {import.meta.env.VITE_TEMPO === "true" && useRoutes(routes)}
       </>
     </Suspense>
   );

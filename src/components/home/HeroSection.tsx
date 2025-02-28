@@ -5,6 +5,8 @@ import { Search, MapPin, Droplets, Wrench } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { useNavigate } from "react-router-dom";
+import { SearchFilters } from "@/components/SearchBar";
 
 interface HeroSectionProps {
   title?: string;
@@ -18,6 +20,27 @@ const HeroSection = ({
   backgroundImage = "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1512&q=80",
 }: HeroSectionProps) => {
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      // Create default filters
+      const defaultFilters: SearchFilters = {
+        contentType: ["guide", "product", "service", "diy"],
+        difficulty: [],
+        readTime: "",
+        sortBy: "relevance",
+      };
+
+      // Store search query and filters in sessionStorage
+      sessionStorage.setItem("searchQuery", searchQuery);
+      sessionStorage.setItem("searchFilters", JSON.stringify(defaultFilters));
+
+      // Navigate to search results page
+      navigate("/search-results");
+    }
+  };
 
   return (
     <div className="relative w-full h-[500px] bg-gray-100 overflow-hidden">
@@ -56,48 +79,48 @@ const HeroSection = ({
 
             <div className="p-4">
               <TabsContent value="location" className="mt-0">
-                <div className="flex">
+                <form onSubmit={handleSearch} className="flex">
                   <Input
                     placeholder="Enter your city or zip code..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="rounded-r-none"
                   />
-                  <Button className="rounded-l-none">
+                  <Button type="submit" className="rounded-l-none">
                     <Search className="h-4 w-4 mr-2" />
                     Search
                   </Button>
-                </div>
+                </form>
               </TabsContent>
 
               <TabsContent value="type" className="mt-0">
-                <div className="flex">
+                <form onSubmit={handleSearch} className="flex">
                   <Input
                     placeholder="Search for toilet types (e.g., smart, eco-friendly)..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="rounded-r-none"
                   />
-                  <Button className="rounded-l-none">
+                  <Button type="submit" className="rounded-l-none">
                     <Search className="h-4 w-4 mr-2" />
                     Search
                   </Button>
-                </div>
+                </form>
               </TabsContent>
 
               <TabsContent value="problem" className="mt-0">
-                <div className="flex">
+                <form onSubmit={handleSearch} className="flex">
                   <Input
                     placeholder="Describe your toilet problem..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="rounded-r-none"
                   />
-                  <Button className="rounded-l-none">
+                  <Button type="submit" className="rounded-l-none">
                     <Search className="h-4 w-4 mr-2" />
                     Search
                   </Button>
-                </div>
+                </form>
               </TabsContent>
             </div>
           </Tabs>
