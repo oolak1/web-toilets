@@ -3,54 +3,52 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
-  BookOpen,
+  Hammer,
   Clock,
   Wrench,
   Search,
   Filter,
   ArrowRight,
-  Check,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
-const guideCategories = [
+const diyCategories = [
   {
-    id: "installation",
-    name: "Installation Guides",
-    description:
-      "Step-by-step instructions for installing different types of toilets",
+    id: "repairs",
+    name: "Toilet Repairs",
+    description: "Fix common toilet problems with these step-by-step guides",
     image:
       "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    count: 15,
+  },
+  {
+    id: "installation",
+    name: "DIY Installation",
+    description: "Install or replace toilets and bathroom fixtures yourself",
+    image:
+      "https://images.unsplash.com/photo-1564540586988-aa4e53c3d799?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    count: 8,
+  },
+  {
+    id: "upgrades",
+    name: "Bathroom Upgrades",
+    description:
+      "Simple upgrades to improve your bathroom's functionality and appearance",
+    image:
+      "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     count: 12,
   },
   {
     id: "maintenance",
     name: "Maintenance Tips",
-    description:
-      "Regular maintenance advice to keep your toilet in top condition",
-    image:
-      "https://images.unsplash.com/photo-1564540586988-aa4e53c3d799?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    count: 18,
-  },
-  {
-    id: "troubleshooting",
-    name: "Troubleshooting",
-    description: "Solutions for common toilet problems and issues",
+    description: "Regular maintenance to keep your toilet in top condition",
     image:
       "https://images.unsplash.com/photo-1585058178215-33108215e3c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    count: 24,
-  },
-  {
-    id: "buying",
-    name: "Buying Guides",
-    description: "How to choose the right toilet for your needs and budget",
-    image:
-      "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    count: 9,
+    count: 10,
   },
 ];
 
-const popularGuides = [
+const popularTutorials = [
   {
     id: "1",
     title: "How to Fix a Running Toilet",
@@ -59,80 +57,84 @@ const popularGuides = [
     image:
       "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     category: "Repairs",
-    readTime: "8 min",
+    time: "30 minutes",
     difficulty: "Beginner",
+    tools: ["Adjustable wrench", "Replacement flapper", "Towel"],
     slug: "fix-running-toilet",
   },
   {
     id: "2",
-    title: "Choosing the Right Toilet for Your Bathroom",
+    title: "Replace a Toilet Seat",
     description:
-      "A comprehensive guide to selecting the perfect toilet based on size, style, efficiency, and special features for your bathroom renovation.",
+      "A simple guide to removing your old toilet seat and installing a new one for improved comfort and appearance.",
     image:
       "https://images.unsplash.com/photo-1564540586988-aa4e53c3d799?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "Buying Guide",
-    readTime: "12 min",
-    difficulty: "Intermediate",
-    slug: "choosing-right-toilet",
+    category: "Installation",
+    time: "15 minutes",
+    difficulty: "Beginner",
+    tools: ["Adjustable wrench", "Screwdriver"],
+    slug: "replace-toilet-seat",
   },
   {
     id: "3",
-    title: "Water-Saving Toilet Modifications",
+    title: "Install a Low-Flow Toilet",
     description:
-      "Discover simple modifications and upgrades that can transform your existing toilet into a water-efficient fixture without replacing it entirely.",
+      "Complete guide to removing your old toilet and installing a new water-efficient model to reduce water consumption.",
     image:
       "https://images.unsplash.com/photo-1613214049841-028981a2eb71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "Eco-Friendly",
-    readTime: "10 min",
+    category: "Installation",
+    time: "2 hours",
     difficulty: "Intermediate",
-    slug: "water-saving-modifications",
+    tools: ["Adjustable wrench", "Putty knife", "Wax ring", "Caulk gun"],
+    slug: "install-low-flow-toilet",
   },
   {
     id: "4",
-    title: "How to Unclog a Toilet Without a Plunger",
+    title: "Unclog a Toilet Without a Plunger",
     description:
-      "Emergency solutions for unclogging your toilet when you don't have a plunger handy, using common household items and techniques.",
+      "Emergency solutions for unclogging your toilet when you don't have a plunger handy, using common household items.",
     image:
       "https://images.unsplash.com/photo-1581876832484-c6a6a1aee7b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "Emergency",
-    readTime: "5 min",
+    category: "Repairs",
+    time: "15 minutes",
     difficulty: "Beginner",
+    tools: ["Hot water", "Dish soap", "Baking soda", "Vinegar"],
     slug: "unclog-without-plunger",
   },
   {
     id: "5",
-    title: "Smart Toilet Installation Guide",
+    title: "Fix a Leaky Toilet Base",
     description:
-      "Complete instructions for installing a modern smart toilet, including electrical connections and programming the features.",
+      "Step-by-step instructions to identify and repair a toilet that's leaking around the base to prevent water damage.",
     image:
       "https://images.unsplash.com/photo-1507924538820-ede94a04019d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "Installation",
-    readTime: "15 min",
-    difficulty: "Advanced",
-    slug: "smart-toilet-installation",
+    category: "Repairs",
+    time: "1 hour",
+    difficulty: "Intermediate",
+    tools: ["Adjustable wrench", "Wax ring", "Caulk gun", "Towels"],
+    slug: "fix-leaky-toilet-base",
   },
   {
     id: "6",
-    title: "Toilet Flapper Replacement",
+    title: "Install a Bidet Attachment",
     description:
-      "A simple guide to replacing your toilet's flapper valve, one of the most common causes of toilet leaks and running water.",
+      "Easy installation guide for adding a bidet attachment to your existing toilet for improved hygiene and comfort.",
     image:
-      "https://images.unsplash.com/photo-1585058178215-33108215e3c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "Maintenance",
-    readTime: "6 min",
+      "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    category: "Upgrades",
+    time: "30 minutes",
     difficulty: "Beginner",
-    slug: "toilet-flapper-replacement",
+    tools: ["Adjustable wrench", "Teflon tape"],
+    slug: "install-bidet-attachment",
   },
 ];
 
 export const metadata = {
-  title:
-    "Toilet Guides - Installation, Maintenance & Troubleshooting | Toilets.org",
-  description:
-    "Comprehensive step-by-step guides for toilet installation, maintenance, troubleshooting, and cleaning. Expert advice for DIY bathroom projects.",
+  title: "DIY Toilet & Bathroom Projects - Step-by-Step Tutorials | Toilets.org",
+  description: "Complete DIY guides for toilet repairs, installations, upgrades, and maintenance. Easy-to-follow tutorials with tool lists and expert tips.",
 };
 
-const GuidesPage = () => {
+const DIYProjectsPage = () => {
   return (
     <div className="min-h-screen py-10">
       <div className="container mx-auto px-4">
@@ -141,10 +143,12 @@ const GuidesPage = () => {
           <p className="text-gray-500">Advertisement</p>
         </div>
 
-        <h1 className="text-4xl font-bold mb-2">Toilet Guides</h1>
+        <h1 className="text-4xl font-bold mb-2">
+          DIY Toilet & Bathroom Projects
+        </h1>
         <p className="text-lg text-gray-600 mb-8">
-          Step-by-step instructions for installing, maintaining, and
-          troubleshooting your toilet
+          Step-by-step tutorials and guides for repairing, upgrading, and
+          maintaining your toilet and bathroom
         </p>
 
         {/* Search Section */}
@@ -157,13 +161,13 @@ const GuidesPage = () => {
               />
               <Input
                 type="text"
-                placeholder="Search guides (e.g., fix running toilet, install new toilet)"
+                placeholder="Search for DIY projects (e.g., fix running toilet, install bidet)"
                 className="pl-10"
               />
             </div>
             <Button className="md:w-auto w-full">
               <Search className="mr-2" size={18} />
-              Find Guides
+              Find Projects
             </Button>
           </div>
         </div>
@@ -172,10 +176,10 @@ const GuidesPage = () => {
         <div className="mb-12">
           <h2 className="text-2xl font-semibold mb-6">Browse by Category</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {guideCategories.map((category) => (
+            {diyCategories.map((category) => (
               <a
                 key={category.id}
-                href={`/guides/${category.id}`}
+                href={`/diy-projects/${category.id}`}
                 className="group block"
               >
                 <Card className="overflow-hidden h-full hover:shadow-lg transition-shadow duration-300">
@@ -186,7 +190,7 @@ const GuidesPage = () => {
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute bottom-3 right-3 bg-primary text-white text-xs font-medium px-2 py-1 rounded">
-                      {category.count} Guides
+                      {category.count} Projects
                     </div>
                   </div>
                   <CardContent className="p-4">
@@ -205,7 +209,7 @@ const GuidesPage = () => {
 
         <Tabs defaultValue="popular" className="mb-12">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-semibold">Featured Guides</h2>
+            <h2 className="text-2xl font-semibold">DIY Tutorials</h2>
             <TabsList>
               <TabsTrigger value="popular">Most Popular</TabsTrigger>
               <TabsTrigger value="recent">Recently Added</TabsTrigger>
@@ -215,40 +219,44 @@ const GuidesPage = () => {
 
           <TabsContent value="popular" className="mt-0">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {popularGuides.map((guide) => (
+              {popularTutorials.map((tutorial) => (
                 <Card
-                  key={guide.id}
+                  key={tutorial.id}
                   className="overflow-hidden h-full hover:shadow-md transition-shadow duration-300"
                 >
                   <div className="relative h-48 overflow-hidden">
                     <img
-                      src={guide.image}
-                      alt={guide.title}
+                      src={tutorial.image}
+                      alt={tutorial.title}
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute top-3 left-3 bg-primary text-white text-xs font-medium px-2 py-1 rounded">
-                      {guide.category}
+                      {tutorial.category}
                     </div>
                   </div>
                   <CardContent className="p-4">
                     <div className="flex items-center gap-4 text-xs text-gray-600 mb-2">
                       <div className="flex items-center gap-1">
                         <Clock className="h-3 w-3" />
-                        <span>{guide.readTime}</span>
+                        <span>{tutorial.time}</span>
                       </div>
                       <div className="flex items-center gap-1">
                         <Wrench className="h-3 w-3" />
-                        <span>{guide.difficulty}</span>
+                        <span>{tutorial.difficulty}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Hammer className="h-3 w-3" />
+                        <span>{tutorial.tools.length} tools</span>
                       </div>
                     </div>
                     <h3 className="text-lg font-semibold mb-2">
-                      {guide.title}
+                      {tutorial.title}
                     </h3>
                     <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                      {guide.description}
+                      {tutorial.description}
                     </p>
                     <Button size="sm" className="w-full">
-                      Read Guide
+                      View Tutorial
                     </Button>
                   </CardContent>
                 </Card>
@@ -258,14 +266,57 @@ const GuidesPage = () => {
 
           <TabsContent value="recent" className="mt-0">
             <p className="text-gray-600">
-              Recently added guides would be displayed here.
+              Recently added tutorials would be displayed here.
             </p>
           </TabsContent>
 
           <TabsContent value="beginner" className="mt-0">
-            <p className="text-gray-600">
-              Beginner-friendly guides would be displayed here.
-            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {popularTutorials
+                .filter(tutorial => tutorial.difficulty === "Beginner")
+                .map((tutorial) => (
+                  <Card
+                    key={tutorial.id}
+                    className="overflow-hidden h-full hover:shadow-md transition-shadow duration-300"
+                  >
+                    <div className="relative h-48 overflow-hidden">
+                      <img
+                        src={tutorial.image}
+                        alt={tutorial.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute top-3 left-3 bg-primary text-white text-xs font-medium px-2 py-1 rounded">
+                        {tutorial.category}
+                      </div>
+                    </div>
+                    <CardContent className="p-4">
+                      <div className="flex items-center gap-4 text-xs text-gray-600 mb-2">
+                        <div className="flex items-center gap-1">
+                          <Clock className="h-3 w-3" />
+                          <span>{tutorial.time}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Wrench className="h-3 w-3" />
+                          <span>{tutorial.difficulty}</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Hammer className="h-3 w-3" />
+                          <span>{tutorial.tools.length} tools</span>
+                        </div>
+                      </div>
+                      <h3 className="text-lg font-semibold mb-2">
+                        {tutorial.title}
+                      </h3>
+                      <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                        {tutorial.description}
+                      </p>
+                      <Button size="sm" className="w-full">
+                        View Tutorial
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+            </div>
           </TabsContent>
         </Tabs>
 
@@ -274,50 +325,47 @@ const GuidesPage = () => {
           <p className="text-gray-500">Advertisement</p>
         </div>
 
-        {/* Featured Guide */}
+        {/* Featured Project */}
         <div className="mb-12">
-          <h2 className="text-2xl font-semibold mb-6">Featured Guide</h2>
+          <h2 className="text-2xl font-semibold mb-6">Featured DIY Project</h2>
           <div className="bg-white rounded-lg overflow-hidden shadow-md">
             <div className="flex flex-col lg:flex-row">
               <div className="lg:w-1/2">
                 <img
                   src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80"
-                  alt="Complete Toilet Maintenance Guide"
+                  alt="How to Fix a Running Toilet"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="lg:w-1/2 p-6 md:p-8">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="bg-primary text-white text-xs font-medium px-2 py-1 rounded">
-                    Comprehensive Guide
+                    Most Popular
                   </span>
                   <span className="text-gray-600 text-sm flex items-center gap-1">
                     <Clock className="h-3 w-3" />
-                    15 min read
+                    30 min
+                  </span>
+                  <span className="text-gray-600 text-sm flex items-center gap-1">
+                    <Wrench className="h-3 w-3" />
+                    Beginner
                   </span>
                 </div>
                 <h3 className="text-2xl font-bold mb-4">
-                  The Ultimate Toilet Maintenance Guide
+                  How to Fix a Running Toilet
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  This comprehensive guide covers all aspects of toilet
-                  maintenance, from routine cleaning to preventing common
-                  issues. Learn how to extend the life of your toilet, improve
-                  its efficiency, and avoid costly repairs with these expert
-                  tips and techniques.
+                  A running toilet can waste up to 200 gallons of water per day and increase your water bill significantly. This step-by-step guide shows you how to diagnose and fix the most common causes of a running toilet, saving you money and preventing water waste.
                 </p>
                 <div className="mb-6">
-                  <h4 className="font-semibold mb-2">What You'll Learn:</h4>
+                  <h4 className="font-semibold mb-2">Tools You'll Need:</h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {[
-                      "Proper cleaning techniques",
-                      "Preventing clogs",
-                      "Fixing leaks",
-                      "Water conservation tips",
-                      "When to call a professional",
-                      "Recommended products",
-                      "Seasonal maintenance",
-                      "Troubleshooting common issues",
+                      "Adjustable wrench",
+                      "Replacement flapper",
+                      "Towel or sponge",
+                      "Bucket",
+                      "Plumber's tape",
                     ].map((item) => (
                       <div key={item} className="flex items-center">
                         <Check className="h-4 w-4 text-green-500 mr-2" />
@@ -327,7 +375,7 @@ const GuidesPage = () => {
                   </div>
                 </div>
                 <Button className="flex items-center gap-2">
-                  Read Full Guide
+                  View Full Tutorial
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </div>
@@ -339,9 +387,3 @@ const GuidesPage = () => {
         <div className="w-full h-24 bg-gray-100 flex items-center justify-center mt-8 rounded-md">
           <p className="text-gray-500">Advertisement</p>
         </div>
-      </div>
-    </div>
-  );
-};
-
-export default GuidesPage;

@@ -6,11 +6,11 @@ import {
   BookOpen,
   Clock,
   Search,
-  Filter,
   ArrowRight,
-  ShoppingCart,
+  Check,
   Tag,
   Lightbulb,
+  ShoppingCart,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
@@ -60,6 +60,7 @@ const popularGuides = [
       "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     category: "Toilet Types",
     readTime: "10 min",
+    difficulty: "Beginner",
     slug: "toilet-types-one-piece-vs-two-piece",
   },
   {
@@ -71,6 +72,7 @@ const popularGuides = [
       "https://images.unsplash.com/photo-1564540586988-aa4e53c3d799?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     category: "Features",
     readTime: "12 min",
+    difficulty: "Intermediate",
     slug: "smart-toilets-worth-investment",
   },
   {
@@ -82,6 +84,7 @@ const popularGuides = [
       "https://images.unsplash.com/photo-1613214049841-028981a2eb71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     category: "Features",
     readTime: "8 min",
+    difficulty: "Beginner",
     slug: "water-efficiency-low-flow-dual-flush",
   },
   {
@@ -93,6 +96,7 @@ const popularGuides = [
       "https://images.unsplash.com/photo-1581876832484-c6a6a1aee7b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     category: "Features",
     readTime: "7 min",
+    difficulty: "Beginner",
     slug: "toilet-height-standard-vs-comfort",
   },
   {
@@ -105,6 +109,7 @@ const popularGuides = [
       "https://images.unsplash.com/photo-1507924538820-ede94a04019d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     category: "Brands",
     readTime: "15 min",
+    difficulty: "Intermediate",
     slug: "top-toilet-brands-comparison",
   },
   {
@@ -116,9 +121,17 @@ const popularGuides = [
       "https://images.unsplash.com/photo-1585058178215-33108215e3c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     category: "Budget",
     readTime: "9 min",
+    difficulty: "Beginner",
     slug: "budget-toilet-buying-guide",
   },
 ];
+
+export const metadata = {
+  title:
+    "Toilet Buying Guides - How to Choose the Perfect Toilet | Toilets.org",
+  description:
+    "Expert buying guides to help you select the right toilet for your needs, budget, and bathroom. Compare features, styles, and brands.",
+};
 
 const BuyingGuidesPage = () => {
   return (

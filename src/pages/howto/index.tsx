@@ -9,13 +9,12 @@ import {
   Search,
   Filter,
   ArrowRight,
-  Check,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
 const guideCategories = [
   {
-    id: "installation",
+    id: "install",
     name: "Installation Guides",
     description:
       "Step-by-step instructions for installing different types of toilets",
@@ -24,7 +23,7 @@ const guideCategories = [
     count: 12,
   },
   {
-    id: "maintenance",
+    id: "maintain",
     name: "Maintenance Tips",
     description:
       "Regular maintenance advice to keep your toilet in top condition",
@@ -33,7 +32,7 @@ const guideCategories = [
     count: 18,
   },
   {
-    id: "troubleshooting",
+    id: "fix",
     name: "Troubleshooting",
     description: "Solutions for common toilet problems and issues",
     image:
@@ -41,12 +40,13 @@ const guideCategories = [
     count: 24,
   },
   {
-    id: "buying",
-    name: "Buying Guides",
-    description: "How to choose the right toilet for your needs and budget",
+    id: "clean",
+    name: "Cleaning Guides",
+    description:
+      "Effective cleaning methods for spotless toilets and bathrooms",
     image:
       "https://images.unsplash.com/photo-1584622781564-1d987f7333c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    count: 9,
+    count: 15,
   },
 ];
 
@@ -65,33 +65,33 @@ const popularGuides = [
   },
   {
     id: "2",
-    title: "Choosing the Right Toilet for Your Bathroom",
+    title: "Toilet Installation Guide for Beginners",
     description:
-      "A comprehensive guide to selecting the perfect toilet based on size, style, efficiency, and special features for your bathroom renovation.",
+      "A comprehensive guide to installing a new toilet, from removing the old one to connecting the water supply.",
     image:
       "https://images.unsplash.com/photo-1564540586988-aa4e53c3d799?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "Buying Guide",
-    readTime: "12 min",
+    category: "Installation",
+    readTime: "15 min",
     difficulty: "Intermediate",
-    slug: "choosing-right-toilet",
+    slug: "toilet-installation-guide",
   },
   {
     id: "3",
-    title: "Water-Saving Toilet Modifications",
+    title: "Monthly Toilet Maintenance Checklist",
     description:
-      "Discover simple modifications and upgrades that can transform your existing toilet into a water-efficient fixture without replacing it entirely.",
+      "Essential maintenance tasks to perform regularly to prevent common toilet problems and extend its lifespan.",
     image:
       "https://images.unsplash.com/photo-1613214049841-028981a2eb71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "Eco-Friendly",
-    readTime: "10 min",
-    difficulty: "Intermediate",
-    slug: "water-saving-modifications",
+    category: "Maintenance",
+    readTime: "5 min",
+    difficulty: "Beginner",
+    slug: "toilet-maintenance-checklist",
   },
   {
     id: "4",
     title: "How to Unclog a Toilet Without a Plunger",
     description:
-      "Emergency solutions for unclogging your toilet when you don't have a plunger handy, using common household items and techniques.",
+      "Emergency solutions for unclogging your toilet when you don't have a plunger handy, using common household items.",
     image:
       "https://images.unsplash.com/photo-1581876832484-c6a6a1aee7b2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     category: "Emergency",
@@ -101,19 +101,19 @@ const popularGuides = [
   },
   {
     id: "5",
-    title: "Smart Toilet Installation Guide",
+    title: "Deep Cleaning Your Toilet: Ultimate Guide",
     description:
-      "Complete instructions for installing a modern smart toilet, including electrical connections and programming the features.",
+      "Learn how to properly deep clean your toilet to remove stains, mineral deposits, and bacteria for a sparkling clean bathroom.",
     image:
       "https://images.unsplash.com/photo-1507924538820-ede94a04019d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    category: "Installation",
-    readTime: "15 min",
-    difficulty: "Advanced",
-    slug: "smart-toilet-installation",
+    category: "Cleaning",
+    readTime: "10 min",
+    difficulty: "Beginner",
+    slug: "deep-cleaning-toilet-guide",
   },
   {
     id: "6",
-    title: "Toilet Flapper Replacement",
+    title: "Toilet Flapper Replacement Guide",
     description:
       "A simple guide to replacing your toilet's flapper valve, one of the most common causes of toilet leaks and running water.",
     image:
@@ -127,12 +127,12 @@ const popularGuides = [
 
 export const metadata = {
   title:
-    "Toilet Guides - Installation, Maintenance & Troubleshooting | Toilets.org",
+    "Toilet Howto Guides - Installation, Maintenance & Troubleshooting | Toilets.org",
   description:
     "Comprehensive step-by-step guides for toilet installation, maintenance, troubleshooting, and cleaning. Expert advice for DIY bathroom projects.",
 };
 
-const GuidesPage = () => {
+const HowtoGuidesPage = () => {
   return (
     <div className="min-h-screen py-10">
       <div className="container mx-auto px-4">
@@ -141,7 +141,7 @@ const GuidesPage = () => {
           <p className="text-gray-500">Advertisement</p>
         </div>
 
-        <h1 className="text-4xl font-bold mb-2">Toilet Guides</h1>
+        <h1 className="text-4xl font-bold mb-2">Toilet Howto Guides</h1>
         <p className="text-lg text-gray-600 mb-8">
           Step-by-step instructions for installing, maintaining, and
           troubleshooting your toilet
@@ -175,7 +175,7 @@ const GuidesPage = () => {
             {guideCategories.map((category) => (
               <a
                 key={category.id}
-                href={`/guides/${category.id}`}
+                href={`/howto/${category.id}`}
                 className="group block"
               >
                 <Card className="overflow-hidden h-full hover:shadow-lg transition-shadow duration-300">
@@ -344,4 +344,4 @@ const GuidesPage = () => {
   );
 };
 
-export default GuidesPage;
+export default HowtoGuidesPage;

@@ -156,24 +156,24 @@ const Header = ({ isLoggedIn = false }: HeaderProps) => {
                 </NavigationMenuContent>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Guides</NavigationMenuTrigger>
+                <NavigationMenuTrigger>Howto Guides</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="p-4 w-[300px]">
                     <div className="grid gap-3">
                       <Link
-                        href="/guides/installation"
+                        href="/howto/install"
                         className="block p-2 rounded-md hover:bg-slate-100"
                       >
                         Installation Guides
                       </Link>
                       <Link
-                        href="/guides/maintenance"
+                        href="/howto/maintain"
                         className="block p-2 rounded-md hover:bg-slate-100"
                       >
                         Maintenance Tips
                       </Link>
                       <Link
-                        href="/guides/troubleshooting"
+                        href="/howto/fix"
                         className="block p-2 rounded-md hover:bg-slate-100"
                       >
                         Troubleshooting
@@ -188,8 +188,8 @@ const Header = ({ isLoggedIn = false }: HeaderProps) => {
                 </Link>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <Link href="/diy" className="block py-2 px-4">
-                  DIY
+                <Link href="/diy-projects" className="block py-2 px-4">
+                  DIY Projects
                 </Link>
               </NavigationMenuItem>
             </NavigationMenuList>
